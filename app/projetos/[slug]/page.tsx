@@ -1,0 +1,17 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { ArrowLeft, ArrowRight, ArrowUpRight, CircleCheck, ShieldAlert } from "lucide-react";
+import { ProjectVisual } from "@/components/project-visual";
+import { getProject, projects } from "@/content/projects";
+
+export function generateStaticParams() { return projects.map(({ slug }) => ({ slug })); }
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> { const { slug } = await params; const project = getProject(slug); return project ? { title: project.title, description: project.summary } : {}; }
+
+export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params; const project = getProject(slug); if (!project) notFound(); const index = projects.findIndex(p => p.slug === slug); const next = projects[(index + 1) % projects.length];
+  return <main id="conteudo"><section className="case-hero shell"><Link href="/projetos" className="back-link"><ArrowLeft size={15}/> Todos os projetos</Link><div className="case-hero-grid"><div><span className="eyebrow">{project.eyebrow}</span><h1>{project.title}</h1><p>{project.summary}</p><div className="case-status"><span>{project.status}</span>{project.categories.map(item => <span key={item}>{item}</span>)}</div></div><div className="case-capabilities"><small>CAPACIDADES</small>{project.capabilities.map((item, i) => <div key={item}><span>0{i+1}</span><b>{item}</b></div>)}</div></div><ProjectVisual project={project} priority /></section>
+  <section className="case-story shell"><aside><span>Visão geral</span><p>Do problema à solução, sem transformar tecnologia em protagonista.</p></aside><div className="case-story-content"><div className="story-block"><span>01 · PROBLEMA</span><h2>O que precisava funcionar melhor</h2><p>{project.problem}</p></div><div className="story-block"><span>02 · SOLUÇÃO</span><h2>Uma resposta construída em torno do fluxo</h2><p>{project.solution}</p></div><div className="story-block"><span>03 · RESULTADO</span><h2>O que a solução passou a permitir</h2><p>{project.result}</p></div>{project.caution && <div className="caution"><ShieldAlert/><div><b>Transparência do case</b><p>{project.caution}</p></div></div>}</div></section>
+  <section className="case-build section-dark"><div className="shell case-build-grid"><div><span className="eyebrow">Como foi construído</span><h2>Arquitetura é uma decisão de produto.</h2><p>A stack foi escolhida para sustentar o fluxo, o tipo de dado e a forma de operação deste projeto.</p></div><div className="stack-list">{project.stack.map(item => <span key={item}><CircleCheck size={16}/>{item}</span>)}</div></div></section>
+  <section className="next-case shell"><span>Próximo projeto</span><Link href={`/projetos/${next.slug}`}><div><small>{next.eyebrow}</small><h2>{next.title}</h2></div><ArrowRight /></Link><Link className="button button-ghost" href="/contato">Conversar sobre um projeto <ArrowUpRight size={16}/></Link></section></main>;
+}
