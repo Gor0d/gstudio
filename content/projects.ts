@@ -14,6 +14,11 @@ export type Project = {
   visual: "dashboard" | "report" | "workflow" | "modules" | "finance" | "image";
   image?: string;
   imageAlt?: string;
+  screenshots?: Array<{
+    src: string;
+    alt: string;
+    caption: string;
+  }>;
   featured?: boolean;
   caution?: string;
 };
@@ -117,6 +122,13 @@ export const projects: Project[] = [
     visual: "image",
     image: "/images/projects/economia.png",
     imageAlt: "Capa do produto EconomIA, calculadora de custos de modelos de inteligência artificial",
+    screenshots: [
+      {
+        src: "/images/projects/screenshots/economia-live.png",
+        alt: "Tela real da calculadora EconomIA exibindo comparação de custos entre modelos",
+        caption: "Calculadora publicada · comparação de provedores e estimativa de consumo",
+      },
+    ],
     featured: true,
   },
   {
@@ -150,6 +162,18 @@ export const projects: Project[] = [
     visual: "image",
     image: "/images/projects/visionlol.png",
     imageAlt: "Dashboard do VisionLOL com histórico de partidas e mapa de calor",
+    screenshots: [
+      {
+        src: "/images/projects/visionlol.png",
+        alt: "Dashboard do VisionLOL com histórico de partidas e mapa de calor",
+        caption: "Produto desktop · leitura consolidada de partidas e telemetria",
+      },
+      {
+        src: "/images/projects/screenshots/visionlol-live.png",
+        alt: "Página pública do VisionLOL apresentando a plataforma de análise",
+        caption: "Página pública do projeto · visão dos módulos e proposta técnica",
+      },
+    ],
     caution: "Produto independente, sem afiliação oficial com a Riot Games.",
   },
   {
@@ -168,6 +192,23 @@ export const projects: Project[] = [
     visual: "image",
     image: "/images/projects/readmission-ml.png",
     imageAlt: "Tela experimental exibindo estimativa de risco de readmissão",
+    screenshots: [
+      {
+        src: "/images/projects/readmission-ml.png",
+        alt: "Tela experimental exibindo uma estimativa de risco de readmissão",
+        caption: "Interface experimental · resultado acompanhado de fatores explicativos",
+      },
+      {
+        src: "/images/projects/screenshots/readmission-performance.png",
+        alt: "Painel experimental com métricas e curvas de desempenho do modelo",
+        caption: "Avaliação documentada · métricas do conjunto experimental",
+      },
+      {
+        src: "/images/projects/screenshots/readmission-architecture.png",
+        alt: "Diagrama da arquitetura do ensemble de modelos DNN e XGBoost",
+        caption: "Arquitetura do estudo · ensemble de rede neural e XGBoost",
+      },
+    ],
     caution: "Estudo com dados públicos/sintéticos. Não é dispositivo médico nem sistema validado para decisão clínica.",
   },
 ];
