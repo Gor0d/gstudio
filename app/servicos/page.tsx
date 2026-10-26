@@ -1,12 +1,23 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowUpRight, Bot, ChartNoAxesCombined, Check, PanelsTopLeft, Workflow } from "lucide-react";
+import { ArrowUpRight, Bot, ChartNoAxesCombined, PanelsTopLeft, Workflow } from "lucide-react";
+import { SITE_URL, divisions, formatBRL, pricing } from "@/content/site";
 
-export const metadata: Metadata = { title: "Serviços", description: "Presença digital, sistemas, dados, automação e IA orientados a problemas de negócio." };
-const services = [
-  { id:"presenca", number:"01", icon:PanelsTopLeft, title:"Presença & Conversão", lead:"Para transformar atenção em contato, pedido ou venda.", signs:["Seu negócio depende apenas de redes sociais", "O cliente não encontra a informação certa", "A jornada até o pedido tem atrito"], outputs:["Landing pages", "Sites institucionais", "Cardápios digitais", "E-commerce", "Portais"] },
-  { id:"sistemas", number:"02", icon:Workflow, title:"Operação & Sistemas", lead:"Para organizar o trabalho que hoje depende de mensagens, papel ou planilhas.", signs:["A mesma informação é digitada mais de uma vez", "Ninguém sabe o status sem perguntar", "O processo cresceu além da planilha"], outputs:["Sistemas web", "SaaS", "CRM", "PDV", "Portais internos"] },
-  { id:"dados", number:"03", icon:ChartNoAxesCombined, title:"Dados & Decisão", lead:"Para enxergar a operação a tempo de agir.", signs:["Relatórios dependem de consolidação manual", "Indicadores chegam tarde", "As fontes de dados não conversam"], outputs:["Dashboards", "BI", "ETL", "Indicadores", "Integração de fontes"] },
-  { id:"automacao", number:"04", icon:Bot, title:"Automação & IA", lead:"Para reduzir tarefas repetitivas e ampliar a capacidade da equipe.", signs:["A equipe repete tarefas previsíveis", "Sistemas exigem copiar e colar", "Existe um caso de uso concreto para IA"], outputs:["APIs", "Integrações", "Agentes", "LLMs", "Machine Learning"] },
-];
-export default function ServicesPage(){return <main id="conteudo"><section className="page-hero shell"><span className="eyebrow">Serviços</span><h1>A tecnologia certa para o problema certo.</h1><p>Do primeiro canal digital à automação da operação, construímos o próximo passo sem impor uma solução maior do que o negócio precisa.</p></section><section className="services-detail shell">{services.map(({id,number,icon:Icon,title,lead,signs,outputs})=><article id={id} key={id}><div className="service-detail-title"><span>{number}</span><Icon/><h2>{title}</h2><p>{lead}</p></div><div><small>QUANDO FAZ SENTIDO</small><ul>{signs.map(s=><li key={s}><Check size={15}/>{s}</li>)}</ul></div><div><small>O QUE PODEMOS CONSTRUIR</small><div className="output-tags">{outputs.map(o=><span key={o}>{o}</span>)}</div></div></article>)}</section><section className="final-cta shell"><span className="eyebrow">Comece pelo problema</span><h2>Não sabe qual serviço pedir? Ótimo.</h2><p>Conte o que hoje atrasa, confunde ou limita sua operação. O enquadramento da solução faz parte do trabalho.</p><Link href="/contato" className="button">Mapear meu processo <ArrowUpRight size={18}/></Link></section></main>}
+export const metadata: Metadata = {
+  title: "Soluções e serviços",
+  description: "Gorod Web, Systems, Intelligence e AI & Automation: sites, sistemas, BI e IA para empresas.",
+  alternates: { canonical: `${SITE_URL}/servicos` },
+};
+const icons = { web: PanelsTopLeft, systems: Workflow, intelligence: ChartNoAxesCombined, ai: Bot };
+
+export default function ServicesPage() {
+  return <main id="conteudo">
+    <section className="page-hero shell"><span className="eyebrow">Soluções</span><h1>A tecnologia certa para o problema certo.</h1><p>Quatro divisões comerciais, do primeiro canal digital à automação da operação.</p></section>
+    <section className="services-detail shell">{divisions.map((d, i) => { const Icon = icons[d.slug]; return <article id={d.slug} key={d.slug}>
+      <div className="service-detail-title"><span>0{i + 1}</span><Icon /><h2>{d.name}</h2><p>{d.problem}</p></div>
+      <div><small>ENTREGÁVEIS EXEMPLIFICATIVOS</small><div className="output-tags">{d.deliverables.map((o) => <span key={o}>{o}</span>)}</div></div>
+      <div><small>COMO É ORÇADO</small><p className="svc-price">{d.slug === "web" ? `Landing page a partir de ${formatBRL(pricing.landing.from)}; site institucional a partir de ${formatBRL(pricing.institutional.from)}.` : pricing.custom}</p><Link className="text-link" href={`/servicos/${d.slug}`}>Ver detalhes <ArrowUpRight size={15} /></Link></div>
+    </article>; })}</section>
+    <section className="final-cta shell"><span className="eyebrow">Comece pelo problema</span><h2>Não sabe qual solução pedir? Ótimo.</h2><p>Conte o que hoje atrasa ou limita sua operação. O enquadramento faz parte do trabalho.</p><Link href="/contato" className="button">Solicitar orçamento <ArrowUpRight size={18} /></Link></section>
+  </main>;
+}
