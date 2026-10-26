@@ -1,3 +1,13 @@
+export type Stage = "producao" | "piloto" | "interno" | "conceito" | "experimental";
+
+export const stageLabels: Record<Stage, string> = {
+  producao: "Produto publicado",
+  piloto: "MVP ou piloto",
+  interno: "Projeto interno",
+  conceito: "Demonstração conceitual",
+  experimental: "Estudo experimental",
+};
+
 export type Project = {
   slug: string;
   title: string;
@@ -7,6 +17,8 @@ export type Project = {
   solution: string;
   result: string;
   status: string;
+  stage: Stage;
+  evidence?: string;
   categories: string[];
   capabilities: string[];
   stack: string[];
@@ -26,12 +38,13 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "fisiohub",
+    stage: "piloto",
     title: "FisioHUB",
     eyebrow: "SaaS · Saúde e operação",
     summary: "Uma plataforma multiempresa para organizar pacientes, avaliações e indicadores em um único fluxo.",
     problem: "Informações clínicas e indicadores operacionais ficavam dispersos entre rotinas manuais, dificultando acompanhamento e continuidade.",
     solution: "Um SaaS multi-tenant com autenticação, gestão de pacientes, atendimentos, escalas, evoluções, indicadores e dashboards por organização.",
-    result: "A solução passou a permitir que cada organização centralize sua rotina e acompanhe informações relevantes em uma interface comum.",
+    result: "Demonstra a arquitetura multiempresa e os fluxos de pacientes, atendimentos e indicadores. Sem métricas de uso divulgadas.",
     status: "Produto SaaS",
     categories: ["Sistemas", "Dados"],
     capabilities: ["Multi-tenancy", "Indicadores", "Autenticação"],
@@ -41,13 +54,33 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    slug: "honormed",
+    stage: "piloto",
+    title: "HonorMed",
+    eyebrow: "Piloto publicado · Saúde",
+    summary: "Controle de produção e recebimento de honorários para médicos, com módulo de laudos.",
+    problem: "Médicos registram atendimentos e laudos antes de saber o valor do honorário e precisam acompanhar o que foi produzido, o que é esperado e o que foi recebido, por local e convênio.",
+    solution: "Um piloto web (PWA) com registro por quantidade, saldos calculados em SQL, isolamento por médico, módulo de laudos por modalidade e instituição e importação de CSV/XLSX com limites.",
+    result: "Demonstra um fluxo de controle financeiro individual com isolamento de dados por usuário. Sem clientes pagantes e sem métricas de uso divulgadas.",
+    status: "Piloto publicado",
+    categories: ["Sistemas", "Dados"],
+    capabilities: ["PWA", "Row-level security", "Importação CSV/XLSX"],
+    stack: ["Next.js", "Supabase", "PostgreSQL", "Cloudflare Workers", "Vitest", "Playwright"],
+    accent: "#8fd0a8",
+    visual: "finance",
+    featured: false,
+    evidence: "Baseado no README público do repositório. Os dados do piloto são fictícios.",
+    caution: "Piloto sem cobrança ativa. Não se conecta a sistemas hospitalares. Divulgação sujeita à confirmação da autorização do responsável; sem imagens publicadas.",
+  },
+  {
     slug: "vetwave",
+    stage: "piloto",
     title: "VetWave",
     eyebrow: "Produto vertical · Laudos",
     summary: "Emissão de laudos veterinários com templates, imagens, assinatura e exportação profissional.",
     problem: "Criar laudos repetitivos sem padronização consome tempo e torna difícil manter histórico, imagens e identidade documental.",
     solution: "Uma plataforma para cadastrar animais, compor laudos a partir de templates editáveis, anexar imagens, assinar e gerar PDFs.",
-    result: "O fluxo de elaboração e entrega de documentos fica organizado em um produto vertical, com dados isolados por usuário e armazenamento próprio.",
+    result: "Demonstra o fluxo de elaboração e entrega de laudos em um produto vertical, com dados isolados por usuário. Sem métricas de uso divulgadas.",
     status: "Produto em evolução",
     categories: ["Sistemas"],
     capabilities: ["Documentos", "Templates", "Storage"],
@@ -58,12 +91,13 @@ export const projects: Project[] = [
   },
   {
     slug: "ponto-digital-pro",
+    stage: "piloto",
     title: "Ponto Digital Pro",
     eyebrow: "Fluxo documental · Auditoria",
     summary: "Da folha enviada pelo gestor à assinatura e conferência do DP, com rastreabilidade por etapa.",
     problem: "Documentos percorriam diferentes perfis e canais, criando retrabalho, pouca visibilidade de status e dificuldade de auditoria.",
     solution: "Um fluxo por perfis para upload, separação de PDF, assinatura por OTP, aprovação em lote, notificações e trilha de auditoria.",
-    result: "O processo pode ser acompanhado de ponta a ponta, com responsabilidades e estados claros para gestor, colaborador, coordenação e DP.",
+    result: "Demonstra um fluxo por perfis com estados e responsabilidades definidos. Sem métricas de uso divulgadas.",
     status: "Produto em evolução",
     categories: ["Sistemas", "Automação"],
     capabilities: ["PDF", "Assinatura", "Auditoria"],
@@ -75,6 +109,7 @@ export const projects: Project[] = [
   },
   {
     slug: "plataforma-operacoes",
+    stage: "interno",
     title: "Plataforma de operações",
     eyebrow: "Projeto interno · Identidade preservada",
     summary: "Um portal modular que conecta contratos, projetos, versões, calendários e demandas internas.",
@@ -92,12 +127,13 @@ export const projects: Project[] = [
   },
   {
     slug: "mei-saas",
+    stage: "piloto",
     title: "MEI SaaS",
     eyebrow: "SaaS · Pequenos negócios",
     summary: "Horas, clientes, prestadores, faturas e indicadores reunidos para quem presta serviços.",
     problem: "Profissionais independentes controlam tempo, faturamento e notas em arquivos separados, sem visão consolidada do negócio.",
     solution: "Um SaaS multi-tenant com registro de horas, clientes, prestadores, faturas, relatórios, limites e planos de assinatura.",
-    result: "O produto transforma uma rotina local em uma base recorrente, multiusuário e preparada para integrações financeiras.",
+    result: "Demonstra um produto multiusuário com planos de assinatura e integrações financeiras em estruturação. Sem métricas de uso divulgadas.",
     status: "Produto em evolução",
     categories: ["Sistemas", "Dados"],
     capabilities: ["SaaS", "Faturamento", "Relatórios"],
@@ -108,6 +144,7 @@ export const projects: Project[] = [
   },
   {
     slug: "economia",
+    stage: "producao",
     title: "EconomIA",
     eyebrow: "Produto próprio · IA",
     summary: "Comparação de custos de modelos de IA para pessoas, APIs e assistentes.",
@@ -133,6 +170,7 @@ export const projects: Project[] = [
   },
   {
     slug: "pdv-offline",
+    stage: "piloto",
     title: "PDV offline para varejo",
     eyebrow: "Desktop · Operação local",
     summary: "Venda, estoque, orçamentos, custos e backup funcionando mesmo sem internet.",
@@ -148,6 +186,7 @@ export const projects: Project[] = [
   },
   {
     slug: "visionlol",
+    stage: "piloto",
     title: "VisionLOL",
     eyebrow: "Dados · Integrações",
     summary: "Monitoramento competitivo com dados de partidas, scrims e telemetria local.",
@@ -178,6 +217,7 @@ export const projects: Project[] = [
   },
   {
     slug: "readmission-ml",
+    stage: "experimental",
     title: "Risco de readmissão",
     eyebrow: "Estudo experimental · Machine Learning",
     summary: "Pipeline explicável para explorar risco de readmissão hospitalar em 30 dias.",

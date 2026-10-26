@@ -1,0 +1,56 @@
+.hero-wa{margin-top:22px}
+.cta-center{justify-content:center}
+.faq{padding:60px 0 20px}
+.faq h2{font-size:clamp(1.8rem,3vw,2.6rem);letter-spacing:-.04em;margin:0 0 24px}
+.faq-list{border-top:1px solid var(--line);max-width:860px}
+.faq-list details{border-bottom:1px solid var(--line)}
+.faq-list summary{cursor:pointer;padding:20px 0;font-weight:650;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary::after{content:"+";font-size:1.3rem;line-height:1;color:var(--green)}
+.faq-list details[open] summary::after{content:"−"}
+.faq-list p{margin:0 0 22px;color:var(--muted);max-width:70ch}
+.differentials{padding:90px 0 30px}
+.diff-grid{list-style:none;margin:40px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:28px 48px}
+.diff-grid li{display:flex;gap:14px;align-items:flex-start;border-top:1px solid var(--line);padding-top:20px}
+.diff-grid svg{flex:none;color:var(--green);margin-top:4px}
+.diff-grid h3{margin:0 0 6px;font-size:1.05rem}
+.diff-grid p{margin:0;color:var(--muted)}
+.price-note{margin-top:36px;padding:18px 20px;background:var(--white);border:1px solid var(--line);color:var(--muted);max-width:860px}
+.recognition-grid .text-link{margin-top:18px}
+.division-body{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;padding:30px 0 60px}
+.division-body small,.division-cases small{display:block;font-size:.7rem;font-weight:700;letter-spacing:.14em;color:var(--green);margin-bottom:14px}
+.division-body p{margin:0 0 12px;color:var(--muted)}
+.check-list{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.check-list li{display:flex;gap:10px;align-items:flex-start}
+.check-list svg{flex:none;color:var(--green);margin-top:5px}
+.notice{display:flex;gap:8px;align-items:flex-start;font-size:.88rem;padding:12px 14px;background:var(--warm)}
+.notice svg{flex:none;margin-top:3px}
+.division-cases{padding-bottom:60px}
+.svc-price{color:var(--muted);margin:0 0 12px}
+.field-error{display:block;margin-top:6px;font-size:.82rem;font-weight:600;color:#a12d1f}
+.contact-form [aria-invalid="true"]{border-color:#a12d1f}
+.form-pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-hint{font-size:.82rem;color:var(--muted);margin:0}
+@media(max-width:980px){.division-body{grid-template-columns:1fr}.diff-grid{grid-template-columns:1fr}}
+@media(max-width:700px){.form-pair{grid-template-columns:1fr}}
+
+/* Títulos com line-height apertado: o realce de seleção de cada linha cobria a anterior. */
+h1::selection,h2::selection,h3::selection,h1 *::selection,h2 *::selection,h3 *::selection{background:transparent;color:var(--green);text-decoration:underline;text-decoration-color:var(--lime);text-decoration-thickness:.06em;text-underline-offset:.08em}
+
+/* Hero: movimento sóbrio. Um fio percorre as quatro divisões; nada de brilho, partículas ou gradientes. */
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes drift{0%,100%{transform:rotate(-2.5deg) translateY(0)}50%{transform:rotate(-2.5deg) translateY(-7px)}}
+@keyframes cell{0%{background:var(--lime)}22%{background:var(--lime)}27%,100%{background:transparent}}
+@keyframes sweep{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.hero-copy>*{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+.hero-copy>:nth-child(2){animation-delay:.08s}.hero-copy>:nth-child(3){animation-delay:.16s}.hero-copy>:nth-child(4){animation-delay:.24s}.hero-copy>:nth-child(5){animation-delay:.32s}
+.hero-orbit{animation:spin 90s linear infinite}
+.orbit-two{animation-duration:60s;animation-direction:reverse}
+.orbit-dot{position:absolute;top:-4px;left:50%;width:8px;height:8px;margin-left:-4px;background:var(--green)}
+.orbit-two .orbit-dot{background:var(--lime);outline:1px solid var(--green)}
+.hero-window{animation:drift 9s ease-in-out infinite}
+.window-grid div{animation:cell 12s linear infinite;animation-delay:calc(var(--i) * 3s)}
+.window-track{height:2px;margin-top:18px;background:var(--line)}
+.window-track i{display:block;height:100%;background:var(--green);transform-origin:left;animation:sweep 12s linear infinite}
+@media(prefers-reduced-motion:reduce){.hero-copy>*,.hero-orbit,.hero-window,.window-grid div,.window-track i{animation:none!important}.window-track i{transform:none}}
