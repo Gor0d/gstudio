@@ -1,0 +1,105 @@
+/* Gorod / forest. Centered composition with a procedural particle field. */
+:root {
+  --paper: #101411;
+  --white: #181f1a;
+  --ink: #edf0e9;
+  --muted: #9ba49e;
+  --line: #303a32;
+  --green: #b6ec80;
+  --green-deep: #304b24;
+  --lime: #b6ec80;
+  --warm: #1b241d;
+  --dark: #0b100d;
+}
+body { background: var(--paper); }
+.site-header { height: 82px; background: #101411e8; border-color: #242722; }
+.brand-mark { border-radius: 3px; color: #14210f; }
+.desktop-nav a { color: #d6e9cd; font-weight: 450; }
+.button { background: #b6ec80; color: #14210f; border-color: #b6ec80; border-radius: 8px; }
+.button:hover { background: #d3ffac; color: #14210f; box-shadow: 0 5px 30px #b6ec8020; }
+.button-ghost { color: var(--ink); background: transparent; border-color: #484f45; }
+.button-ghost:hover { color: var(--ink); background: #232622; }
+.header-cta { border: 1px solid #6a7365; background: transparent; color: #ddf1d4; border-radius: 7px; font-weight: 500; }
+.header-cta:hover { background: #242823; color: #fff; box-shadow: none; }
+.desktop-nav a:hover, .footer-links a:hover { color: #b6ec80; }
+.mobile-nav summary { background: #20231f; border-color: #444a41; }
+.site-footer { background: #0b100d; }
+.site-footer p, .footer-links a, .footer-bottom { color: #9ba49e; }
+.whatsapp-fab { background: #1e201c; border-color: #4c5349; }
+.whatsapp-fab:hover { background: #304b24; }
+.studio-home { background: #101411; }
+.revelo-hero { position: relative; isolation: isolate; overflow: hidden; border-bottom: 1px solid #262924; }
+.revelo-hero-glow { position: absolute; inset: 0; z-index: -3; pointer-events: none; background: radial-gradient(ellipse at 50% 65%, #29431e88, transparent 55%), radial-gradient(ellipse at 22% 54%, #24351f6b, transparent 44%), radial-gradient(ellipse at 83% 56%, #243d1d62, transparent 45%); }
+.revelo-hero-content { display: flex; flex-direction: column; align-items: center; text-align: center; padding-top: 76px; padding-bottom: 30px; }
+.revelo-hero .eyebrow { color: #b5c5ad; letter-spacing: .15em; font-size: .7rem; font-weight: 600; }
+.revelo-hero h1 { max-width: 950px; margin: 30px 0 22px; font-size: clamp(2.8rem, 4.8vw, 4.7rem); line-height: 1.08; letter-spacing: -.048em; font-weight: 600; color: #e8fdde; }
+.revelo-hero h1 em { font-style: normal; color: #edf0e9; }
+.revelo-hero-intro { color: #b6c7af; font-size: 1.04rem; line-height: 1.7; max-width: 680px; margin: 0 0 49px; text-wrap: pretty; }
+.revelo-paths { display: grid; grid-template-columns: 1fr 1fr; width: min(100%, 910px); gap: 18px; animation-delay: .38s; }
+.revelo-path { display: flex; flex-direction: column; align-items: center; padding: 26px 25px 23px; background: #121c14f2; border: 1px solid #3e433b; border-radius: 18px; box-shadow: 0 20px 50px #00000016; transition: transform .3s, border-color .3s, background .3s; }
+.revelo-path:hover { transform: translateY(-5px); border-color: #b6ec8099; background: #1e211d; }
+.path-icon { color: #b6ec80; display: inline-flex; margin-bottom: 17px; }
+.revelo-path h2 { display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 1.19rem; font-weight: 550; letter-spacing: -.025em; line-height: 1.35; margin: 0 0 10px; }
+.revelo-path h2 svg { flex-shrink: 0; }
+.revelo-path p { font-size: .93rem; color: #bccdb4; line-height: 1.65; margin: 0; }
+.path-action { display: inline-flex; align-items: center; gap: 10px; font-size: .73rem; color: #b6d99a; margin-top: 20px; }
+.revelo-contact { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; margin-top: 27px; border: 1px solid #373c35; border-radius: 10px; background: #171916; padding: 13px 19px; font-size: .81rem; animation-delay: .48s; }
+.revelo-contact span { color: #b1c0a9; }
+.revelo-contact strong { font-weight: 500; border-bottom: 1px solid #737e6e; }
+.revelo-contact svg { color: #b6ec80; }
+.revelo-contact:hover { border-color: #b6ec8088; }
+.revelo-hero-footer { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-top: 51px; color: #838e7d; }
+.revelo-hero-footer > span { font-size: .6rem; letter-spacing: .12em; }
+.motion-toggle { color: #a0ae99; border-color: #393e37; border-radius: 7px; font-size: .65rem; }
+.motion-toggle:hover { background: #1f221e; border-color: #717c6d; }
+.motion-toggle[aria-pressed="true"] { border-color: #707a6b; color: #b6ec80; }
+.expertise-band { border-bottom: 1px solid #2b2e29; padding: 30px 0 25px; }
+.expertise-band-heading { justify-content: center; margin-bottom: 16px; }
+.expertise-band-heading > span { max-width: none; font-size: .65rem; font-weight: 600; color: #8e9b88; letter-spacing: .12em; }
+.studio-marquee-group > span { border: 0; background: transparent; border-radius: 0; color: #b0c0a9; font-size: 1.04rem; padding: 8px 20px; }
+.studio-marquee i { color: #575f54; font-size: .65rem; }
+.studio-section-heading p, .studio-service p, .studio-projects .project-card p, .studio-process p { color: #adbda6; }
+.studio-section h2 { font-weight: 550; }
+.studio-section h2 span { color: #95a38f; }
+.studio-work, .studio-faq { border-color: #2b2e29; }
+.studio-service { border-color: #363b34 !important; background: #151c16 !important; border-radius: 15px !important; }
+.studio-service-top span { color: #84907e; }
+.studio-tags span { border-color: #3c413a; color: #a8b7a1; }
+.studio-process article { border-color: #4a5047; }
+.studio-projects .project-card-meta { color: #8f9b89; }
+.studio-stack { background: #121411; border-color: #2b2e29; }
+.studio-stack > span { color: #8e9b88; }
+.studio-contact { background: linear-gradient(120deg, #1c3017, #172115); border: 1px solid #4a5147; color: #edf0e9; }
+.studio-contact .eyebrow { color: #b6ec80; }
+.studio-contact h2 em { color: #c3eea0; font-family: inherit; font-style: normal; }
+.studio-contact p { color: #b8c8b0; }
+.studio-contact .button { background: #b6ec80; color: #14210f; border-color: #b6ec80; }
+.studio-contact-watermark { color: #c3eea008; }
+.studio-home .section-heading p { color: #adbda6; }
+.revelo-hero .hero-line:nth-child(2) > * { animation-delay: .2s; }
+.revelo-hero-intro { animation-delay: .3s; }
+@media (min-width: 1600px) { .revelo-hero-content { padding-top: 88px; } .revelo-hero h1 { font-size: 4.6rem; } }
+@media (max-width: 980px) { .revelo-hero-content { padding-top: 62px; } .revelo-path h2 { font-size: 1.05rem; } }
+@media (max-width: 700px) {
+  .site-header { height: 72px; }
+  .revelo-hero-content { padding-top: 43px; padding-bottom: 22px; }
+  .revelo-hero .eyebrow { max-width: 32ch; font-size: .59rem; line-height: 1.8; letter-spacing: .12em; }
+  .revelo-hero h1 { font-size: clamp(2.15rem, 7.8vw, 3.3rem); line-height: 1.12; letter-spacing: -.045em; margin-top: 23px; }
+  .revelo-hero-intro { font-size: .95rem; max-width: 40ch; margin-bottom: 30px; }
+  .desktop-break { display: none; }
+  .revelo-paths { grid-template-columns: 1fr; gap: 13px; max-width: 460px; }
+  .revelo-path { padding: 23px 18px; border-radius: 14px; }
+  .revelo-path h2 { font-size: 1.08rem; }
+  .revelo-path p { font-size: .9rem; }
+  .path-icon { margin-bottom: 12px; }
+  .path-action { margin-top: 14px; }
+  .revelo-contact { font-size: .75rem; gap: 7px; padding: 13px; margin-top: 22px; }
+  .revelo-hero-footer { margin-top: 28px; justify-content: center; }
+  .revelo-hero-footer > span { display: none; }
+  .expertise-band-heading > span { font-size: .55rem; text-align: center; }
+  .studio-marquee-group > span { font-size: .9rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .revelo-path, .revelo-contact { transition: none; }
+  .revelo-path:hover { transform: none; }
+}

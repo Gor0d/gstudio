@@ -1,0 +1,67 @@
+/* Optical depth and motion. Everything remains readable without JavaScript. */
+@property --beam-angle { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+html { scroll-padding-top: 0; }
+.revelo-hero-content { position: relative; }
+.revelo-hero-content::before { left: -10%; right: -10%; height: 53%; background: radial-gradient(ellipse at 50% 23%, var(--bg) 15%, color-mix(in srgb, var(--bg) 92%, transparent) 47%, transparent 76%); }
+.revelo-hero h1 { position: relative; max-width: 1000px; }
+.revelo-path { backdrop-filter: blur(8px); }
+.hero-enter, .hero-line > span, .hero-line > em, .motion-ready .hero-enter, .motion-ready .hero-line > span, .motion-ready .hero-line > em { animation: none; }
+.gsap-text-word, .gsap-text-word-mask { vertical-align: baseline; }
+.premium-interactive { position: relative; isolation: isolate; transform-style: preserve-3d; }
+.premium-interactive > :not(.premium-spotlight):not(.premium-border-beam) { position: relative; z-index: 1; }
+.premium-spotlight { position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; z-index: 0; transition: opacity 250ms; }
+.premium-interactive:hover > .premium-spotlight { opacity: 1; }
+.premium-border-beam { position: absolute; inset: -1px; border-radius: inherit; padding: 1px; pointer-events: none; z-index: 4; opacity: .13; background: conic-gradient(from var(--beam-angle), transparent 0deg, transparent 285deg, color-mix(in srgb,var(--accent) 35%,transparent) 320deg, var(--accent) 350deg, transparent 360deg); mask: linear-gradient(var(--bg) 0 0) content-box exclude, linear-gradient(var(--bg) 0 0); animation: border-beam-turn 7s linear infinite; animation-play-state: paused; transition: opacity 250ms; }
+.premium-interactive:hover > .premium-border-beam, .premium-interactive:focus-within > .premium-border-beam { opacity: .8; animation-play-state: running; }
+.project-card.premium-interactive { overflow: visible; }
+.project-card.premium-interactive > .premium-spotlight { z-index: 3; }
+.project-card.premium-interactive .project-card-link::after { z-index: 8; }
+.project-card.premium-interactive > .project-card-copy { position: static; }
+.project-card-visual { overflow: clip; }
+.project-card-visual .project-visual { transform-origin: center; }
+.studio-service.premium-interactive { overflow: visible; }
+.studio-service .studio-tags { padding-bottom: 4px; }
+.button:not(.button-ghost):not(.header-cta) { position: relative; isolation: isolate; }
+.button:not(.button-ghost):not(.header-cta)::after { content: ""; position: absolute; inset: -2px; padding: 2px; border-radius: inherit; pointer-events: none; background: conic-gradient(from var(--beam-angle), transparent 260deg, var(--text) 330deg, transparent 360deg); mask: linear-gradient(var(--bg) 0 0) content-box exclude, linear-gradient(var(--bg) 0 0); opacity: 0; animation: border-beam-turn 1.8s linear infinite; animation-play-state: paused; transition: opacity 200ms; }
+.button:not(.button-ghost):not(.header-cta):hover::after { opacity: .85; animation-play-state: running; }
+.desktop-nav a::after { display: none; }
+.nav-active-indicator { position: absolute; bottom: 2px; left: 0; right: 0; height: 2px; border-radius: 4px; background: var(--accent); box-shadow: 0 0 12px color-mix(in srgb,var(--accent) 20%, transparent); }
+.desktop-nav a:hover { color: var(--accent); }
+.studio-marquee { mask-image: linear-gradient(90deg,transparent,var(--bg) 7%,var(--bg) 93%,transparent); }
+.studio-marquee:hover .studio-marquee-track { animation-play-state: paused; }
+.studio-facts { display: grid; grid-template-columns: repeat(3,1fr); padding-block: var(--space-8); border-bottom: 1px solid var(--border); }
+.studio-facts p { display: flex; flex-direction: column; gap: 8px; margin: 0; padding-inline: var(--space-7); border-right: 1px solid var(--border); }
+.studio-facts p:first-child { padding-left: 0; }
+.studio-facts p:last-child { border: 0; }
+.studio-facts strong { font-size: clamp(2.8rem,5vw,4.4rem); line-height: 1.1; letter-spacing: -.05em; font-weight: 500; font-variant-numeric: tabular-nums; color: var(--accent); }
+.studio-facts p > span { color: var(--text-muted); font-size: var(--type-small); }
+.process-progress { display: none; }
+.motion-paused { scroll-behavior: auto; }
+.motion-paused *, .motion-paused *::before, .motion-paused *::after { transition: none !important; }
+.motion-paused .premium-interactive { transform: none !important; }
+[data-motion="paused"] .premium-spotlight, [data-motion="reduced"] .premium-spotlight { opacity: 0 !important; }
+.motion-paused .premium-border-beam { opacity: .12; }
+@keyframes border-beam-turn { to { --beam-angle: 360deg; } }
+@media(min-width:981px) {
+  .studio-process { display: block; position: relative; max-width: 980px; margin-inline: auto; padding-left: 50px; }
+  .studio-process > article { display: grid; grid-template-columns: 42px minmax(0,1fr) minmax(0,1.2fr); align-items: start; gap: 30px; padding: 35px 0; min-height: 150px; border-top: 1px solid var(--border); }
+  .studio-process > article > span { position: relative; font-size: .85rem; background: var(--bg); padding-block: 5px; }
+  .studio-process > article h3 { margin: 0; }
+  .studio-process > article p { margin: 0; max-width: 45ch; }
+  .process-progress { display: block; position: absolute; left: 12px; top: 0; bottom: 0; width: 2px; background: var(--border); }
+  .process-progress i { display: block; width: 100%; height: 100%; background: var(--accent); transform-origin: top; box-shadow: 0 0 14px color-mix(in srgb,var(--accent) 20%,transparent); }
+}
+@media(max-width:980px) { .studio-process { grid-template-columns: 1fr; } .process-progress { display: none; } }
+@media(max-width:700px) {
+  .studio-facts { padding-block: var(--space-7); gap: 16px; }
+  .studio-facts p { padding: 0 10px 0 0; }
+  .studio-facts strong { font-size: 2.5rem; }
+  .studio-facts p > span { font-size: .75rem; }
+}
+@media(hover:none) { .premium-border-beam { animation: none; } .premium-interactive:hover > .premium-spotlight { opacity: 0; } }
+@media(prefers-reduced-motion:reduce) {
+  .premium-interactive { transform: none !important; }
+  .premium-border-beam { animation: none !important; }
+  .gsap-text-word, .gsap-text-word-mask { transform: none !important; }
+  .studio-marquee { mask-image: none; }
+}
