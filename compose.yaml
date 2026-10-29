@@ -1,0 +1,9 @@
+name: gstudio
+services:
+  web:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "0.0.0.0:${GSTUDIO_PORT:-3000}:3000"
+    init: true
+

@@ -35,7 +35,7 @@ export default async function DivisionPage({ params }: { params: Promise<{ slug:
       <div><small>ENTREGÁVEIS EXEMPLIFICATIVOS</small><div className="output-tags">{d.deliverables.map((o) => <span key={o}>{o}</span>)}</div></div>
       <div><small>INVESTIMENTO</small><p>{d.pricing}</p>{d.notice && <p className="notice"><Info size={16} aria-hidden="true" /> {d.notice}</p>}</div>
     </section>
-    <section className="shell division-cases"><small>PROJETOS RELACIONADOS</small><div className="featured-pair">{cases.map((p) => <ProjectCard key={p.slug} project={p} />)}</div></section>
+    <section className="shell division-cases"><small>PROJETOS RELACIONADOS</small><div className="featured-pair">{cases.map((p) => <ProjectCard key={p.slug} project={p} />)}{cases.length === 1 && <article className="surface-card more-projects"><span className="eyebrow">Continue explorando</span><h3>Outros desafios.<br />A mesma disciplina.</h3><p>Conheça sistemas, produtos e estudos de outras especialidades.</p><Link href="/projetos" className="button button-ghost">Ver todos os projetos <ArrowUpRight size={18} /></Link></article>}</div></section>
     <section className="faq shell"><h2>Perguntas frequentes</h2><FaqList items={d.faq} /></section>
     <section className="final-cta shell"><h2>Vamos entender o seu caso?</h2><p>Conte o contexto. Respondemos com os próximos passos.</p><Link href={`/contato?servico=${d.slug}`} className="button">{d.cta} <ArrowUpRight size={18} /></Link></section>
   </main>;
