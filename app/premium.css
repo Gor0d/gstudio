@@ -1,13 +1,13 @@
 /* Canonical tokens and shared components. Legacy illustrations keep their own palettes. */
 :root {
-  --bg: #101411;
-  --surface: #181f1a;
+  --bg: #0B0F0B;
+  --surface: #131B15;
   --surface-2: #202a22;
-  --border: #354538;
-  --text: #edf0e9;
-  --text-muted: #b0bdb1;
-  --accent: #b6ec80;
-  --accent-ink: #14210f;
+  --border: #26302A;
+  --text: #F5F7F2;
+  --text-muted: #AEB8AE;
+  --accent: #B8FF67;
+  --accent-ink: #0B0F0B;
   --error: #ffb9ab;
   --overlay: #070c09cc;
   --illustration-bg: #eef1eb;

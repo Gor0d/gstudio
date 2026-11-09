@@ -1,4 +1,5 @@
 export const SITE_URL = "https://gorod-studio.vercel.app";
+export const OG_IMAGE = { url: "/og.png", width: 1200, height: 630, alt: "Gorod Studio — Sistemas, dados e IA para a operação funcionar." };
 
 export const pricing = {
   landing: { label: "Landing page", from: 1490 },

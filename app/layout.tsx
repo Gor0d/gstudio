@@ -22,16 +22,16 @@ import "./premium-motion.css";
 import "./concept.css";
 import "./signature.css";
 const inter = localFont({ src: "../public/fonts/inter-latin-variable.woff2", variable: "--font-inter", display: "swap", weight: "100 900" });
-const display = localFont({ src: "../public/fonts/CabinetGrotesk-Variable.woff2", variable: "--font-display", display: "swap", weight: "100 900" });
+const display = localFont({ src: "../public/fonts/inter-latin-variable.woff2", variable: "--font-display", display: "swap", weight: "100 900" });
 const mono = localFont({ src: "../public/fonts/JetBrainsMono-Regular.woff2", variable: "--font-mono", display: "swap", weight: "400", preload: false });
 import { JsonLd } from "@/components/json-ld";
-import { SITE_URL, centralMessage } from "@/content/site";
+import { OG_IMAGE, SITE_URL, centralMessage } from "@/content/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://gorod-studio.vercel.app"),
   title: { default: "Gorod Studio — Tecnologia que transforma processos em resultados", template: "%s — Gorod Studio" },
   description: centralMessage,
-  openGraph: { title: "Gorod Studio", description: "Tecnologia que transforma processos em resultados.", type: "website", locale: "pt_BR", url: SITE_URL, siteName: "Gorod Studio" },
+  openGraph: { title: "Gorod Studio", description: "Tecnologia que transforma processos em resultados.", type: "website", locale: "pt_BR", url: SITE_URL, siteName: "Gorod Studio", images: [OG_IMAGE] },
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
 };
 

@@ -54,3 +54,15 @@ h1::selection,h2::selection,h3::selection,h1 *::selection,h2 *::selection,h3 *::
 .window-track{height:2px;margin-top:18px;background:var(--line)}
 .window-track i{display:block;height:100%;background:var(--green);transform-origin:left;animation:sweep 12s linear infinite}
 @media(prefers-reduced-motion:reduce){.hero-copy>*,.hero-orbit,.hero-window,.window-grid div,.window-track i{animation:none!important}.window-track i{transform:none}}
+
+/* Marca "Slash" (manual v1.0): símbolo de duas barras + Gorod (400) Studio (700) em Inter. */
+.brand{gap:13px;font-family:var(--font-inter),Inter,Arial,sans-serif;font-size:1.2rem;letter-spacing:-.02em;color:#f5f7f2}
+.site-header .brand{font-family:var(--font-inter),Inter,Arial,sans-serif;font-size:1.2rem}
+.brand-symbol{display:block;height:26px;width:auto;flex:none}
+.brand-name{font-weight:400;line-height:1}
+.brand-name strong{font-weight:700}
+.brand-footer .brand-symbol{height:32px}
+
+/* Tipografia da marca: Inter 700 nos títulos (a variável --font-display aponta para Inter). */
+h1,h2,h3,h4{font-weight:700}
+h1,h2{letter-spacing:-.035em!important}

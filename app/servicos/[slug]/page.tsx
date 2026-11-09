@@ -6,7 +6,7 @@ import { FaqList } from "@/components/faq";
 import { JsonLd } from "@/components/json-ld";
 import { ProjectCard } from "@/components/project-card";
 import { projects } from "@/content/projects";
-import { SITE_URL, divisions, getDivision } from "@/content/site";
+import { OG_IMAGE, SITE_URL, divisions, getDivision } from "@/content/site";
 
 const related: Record<string, string[]> = {
   web: ["economia"],
@@ -20,7 +20,7 @@ export function generateStaticParams() { return divisions.map(({ slug }) => ({ s
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params; const d = getDivision(slug);
   if (!d) return {};
-  return { title: d.name, description: d.short, alternates: { canonical: `${SITE_URL}/servicos/${d.slug}` }, openGraph: { title: `${d.name} — Gorod Studio`, description: d.short, locale: "pt_BR" } };
+  return { title: d.name, description: d.short, alternates: { canonical: `${SITE_URL}/servicos/${d.slug}` }, openGraph: { title: `${d.name} — Gorod Studio`, description: d.short, locale: "pt_BR", images: [OG_IMAGE] } };
 }
 
 export default async function DivisionPage({ params }: { params: Promise<{ slug: string }> }) {

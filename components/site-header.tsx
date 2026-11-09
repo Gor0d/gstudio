@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { motion } from "motion/react";
+import { BrandLogo } from "./brand-logo";
 import { useMotionPreferences } from "./motion-provider";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -44,7 +45,7 @@ export function SiteHeader() {
   }
   function navLinks(mobile = false) { return links.map(([label, href]) => <Link key={href} href={href} aria-current={current(href)} onClick={() => { setHash(href.includes("#") ? "#processo" : ""); close(); }}>{label}{current(href) && !mobile && <motion.span className="nav-active-indicator" layoutId="nav-active-indicator" aria-hidden="true" transition={enabled ? { type: "spring", stiffness: 400, damping: 35 } : { duration: 0 }} />}</Link>); }
   return <header className={"site-header" + (scrolled ? " is-scrolled" : "")}><div className="shell header-inner">
-    <Link href="/" onClick={() => setHash("")} className="brand" aria-label="Gorod Studio, página inicial"><span className="brand-mark" aria-hidden="true">G</span><span>Gorod <strong>Studio</strong></span></Link>
+    <BrandLogo onClick={() => setHash("")} />
     <nav className="desktop-nav" aria-label="Navegação principal">{navLinks()}</nav>
     <Link href="/contato" aria-current={pathname === "/contato" ? "page" : undefined} className="button button-small header-cta">Orçamento <ArrowUpRight size={15} /></Link>
     <button ref={trigger} className="mobile-menu-trigger" aria-label="Abrir menu" aria-expanded={open} aria-controls="mobile-menu" onClick={() => setOpen(true)}><Menu size={23} /></button>

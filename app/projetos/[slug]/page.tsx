@@ -5,10 +5,10 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, ArrowUpRight, CircleCheck, ShieldAlert } from "lucide-react";
 import { ProjectVisual } from "@/components/project-visual";
 import { getProject, projects, stageLabels } from "@/content/projects";
-import { SITE_URL } from "@/content/site";
+import { OG_IMAGE, SITE_URL } from "@/content/site";
 
 export function generateStaticParams() { return projects.map(({ slug }) => ({ slug })); }
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> { const { slug } = await params; const project = getProject(slug); return project ? { title: project.title, description: project.summary, alternates: { canonical: `${SITE_URL}/projetos/${project.slug}` }, openGraph: { title: `${project.title} — Gorod Studio`, description: project.summary, type: "article", locale: "pt_BR" } } : {}; }
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> { const { slug } = await params; const project = getProject(slug); return project ? { title: project.title, description: project.summary, alternates: { canonical: `${SITE_URL}/projetos/${project.slug}` }, openGraph: { title: `${project.title} — Gorod Studio`, description: project.summary, type: "article", locale: "pt_BR", images: [OG_IMAGE] } } : {}; }
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params; const project = getProject(slug); if (!project) notFound(); const index = projects.findIndex(p => p.slug === slug); const next = projects[(index + 1) % projects.length];
