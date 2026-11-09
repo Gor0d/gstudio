@@ -42,7 +42,7 @@ export function GorodExperience() {
 
   useLayoutEffect(() => {
     if (enabled && pendingFlip.current) {
-      const animation = Flip.from(pendingFlip.current, { duration: .55, ease: "power3.inOut", absolute: true, scale: true });
+      const animation = Flip.from(pendingFlip.current, { duration: .55, ease: "power3.inOut", absolute: true, scale: true, onEnter: elements => gsap.fromTo(elements, { opacity: 0 }, { opacity: 1, duration: .35, delay: .2 }), onLeave: elements => gsap.to(elements, { opacity: 0, duration: .2 }) });
       pendingFlip.current = null;
       return () => { animation.revert(); };
     }
